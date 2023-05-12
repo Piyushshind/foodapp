@@ -4,7 +4,6 @@ import { Link, json } from 'react-router-dom'
 const SignUp = () => {
 
     const [credentials, setCredentials] = useState({ name: '', email: '', password: '', geolocation: '' });
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:5000/api/creatuser", {
