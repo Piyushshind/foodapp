@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs");
-const jwtSecret="MynameisKishanGaurWelcomeHere1$#"
+const jwtSecret="MynameisPiyushShindeWelcomeHere1$#"
 
 router.post(
   "/createuser",
