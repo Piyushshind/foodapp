@@ -1,23 +1,25 @@
-const express = require('express');
-// const mongoose=require('mongoose')
-const app = express();
-const dataBase = require("./db");
-// const mongoose = require('mongoose');
+const express = require('express')
+const app = express()
+// const port = 7000;
+const mongoDB=require("./db")
 
-// main().catch(err => console.log(err));
-
-// async function main() {
-//   await mongoose.connect("mongodb+srv://foodees:foodees9270@cluster0.zpraavm.mongodb.net/foodees?retryWrites=true&w=majority");
-//   console.log('mongo');
-
-// }
-
-dataBase()
-
-app.get('/foodapp', (req, res) => {
-  res.send('Hellow world')
-});
-
-app.listen(5000, () => {
-  console.log('server started');
+app.use((req,res,next)=>{
+  res.setHeader("Access-Control-Allow-Origin","http://localhost:3000")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  )
+  next()
 })
+
+mongoDB()
+app.get('/', (req, res) => {
+  res.send('Hello World! good')
+})
+app.use(express.json())
+app.use("/api",require("./Routes/CreateUser"))
+app.use("/api",require("./Routes/DisplayData"))
+
+// app.listen(9000, () => {
+//   console.log('node started')
+// })
