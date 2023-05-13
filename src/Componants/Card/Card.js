@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useCart, useDispatchCart } from '../ContextReducer/ContextReducer';
 
 
@@ -13,11 +13,15 @@ const Card = (props) => {
   const [size,setSize] = useState('');
   
   let finalPrice = qty * parseInt(options[size])
-  
+  let priceRef = useRef();
   const handleAddtoCart = async () => {
-      await dispatch({type:"ADD",id:foodItem._id,name:foodItem.name,price:props.finalPrice,qty:qty,size:size,img:foodItem.img})
+      await dispatch({type:"ADD",id:foodItem._id,name:foodItem.name,price:finalPrice,qty:qty,size:size,img:foodItem.img})
         console.log(data);
     }
+
+    useEffect(()=>{
+      setSize(priceRef.current.value)
+    },[])
 
   return (
     <div>
@@ -30,13 +34,13 @@ const Card = (props) => {
             <select className='m-2 h-100 bg-success rounded' onChange={(e)=>setQty(e.target.value)}>
               {Array.from(Array(3), (e, i) => <option key={i + 1} value={i + 1}>{i + 1}</option>)}
             </select>
-            <select className='m-2 h-100 bg-success rounded' onChange={(e)=>setSize(e.target.value)}>
+            <select className='m-2 h-100 bg-success rounded' ref={priceRef} onChange={(e)=>setSize(e.target.value)}>
               {
                 priceOption.map(data => <option key={data} value={data}>{data}</option>)
               }
             </select>
             <div className='d-inline h-100 fs-5'>
-              ₹{'Total price'}/-
+              ₹{finalPrice}/-
             </div>
           </div>
           <hr>
