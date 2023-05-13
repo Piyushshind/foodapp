@@ -7,7 +7,14 @@ const reducer = (state, action) => {
       switch (action.type) {
         case "ADD":
             
-         return [...state,{id:action.id,name:action.name,img:action.img,qty:action.qty,size:action.size,price:action.price}]
+         return [...state,{
+            id:action.id,name:action.name,img:action.img,
+            qty:action.qty,size:action.size,price:action.price
+        }]
+        case"REMOVE":
+          let newArr= [...state]
+          newArr.splice(action.index,1)
+          return newArr
             
        default:
             console.log('Error in reducer');

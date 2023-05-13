@@ -15,6 +15,13 @@ const Card = (props) => {
   let finalPrice = qty * parseInt(options[size])
   let priceRef = useRef();
   const handleAddtoCart = async () => {
+
+     let food=[];
+     for(const item of data){
+       if(item.id === foodItem._id){
+         food = item
+       }
+     }
       await dispatch({type:"ADD",id:foodItem._id,name:foodItem.name,price:finalPrice,qty:qty,size:size,img:foodItem.img})
         console.log(data);
     }
