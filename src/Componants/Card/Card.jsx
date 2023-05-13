@@ -8,27 +8,37 @@ const Card = (props) => {
   const priceOption = Object.keys(options)
   let dispatch = useDispatchCart();
   let data = useCart();
-  
-  const [qty,setQty] = useState(1);
-  const [size,setSize] = useState('');
-  
+
+  const [qty, setQty] = useState(1);
+  const [size, setSize] = useState('');
+
   let finalPrice = qty * parseInt(options[size])
   let priceRef = useRef();
   const handleAddtoCart = async () => {
 
-     let food=[];
-     for(const item of data){
-       if(item.id === foodItem._id){
-         food = item
-       }
-     }
-      await dispatch({type:"ADD",id:foodItem._id,name:foodItem.name,price:finalPrice,qty:qty,size:size,img:foodItem.img})
-        console.log(data);
+    let food = [];
+    for (const item of data) {
+      if (item.id === foodItem._id) {
+        food = item;
+        break;
+      }
     }
+    if (food !== []) {
+      if (food.size === size) {
+        await dispatch({ type: "UPDATE", id: foodItem._id, price: finalPrice, qty: qty })
+        return
+      } else if (food.size !== size) {
+        await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size, img: foodItem.img })
+        return
+      }
+      return
+    }
+    await dispatch({ type: "ADD", id: foodItem._id, name: foodItem.name, price: finalPrice, qty: qty, size: size, img: foodItem.img })
+  }
 
-    useEffect(()=>{
-      setSize(priceRef.current.value)
-    },[])
+  useEffect(() => {
+    setSize(priceRef.current.value)
+  }, [])
 
   return (
     <div>
@@ -38,10 +48,10 @@ const Card = (props) => {
           <h5 className="card-title">{foodItem.name}</h5>
           <p className="card-text">Some quick example text to build on </p>
           <div className='container w-100'>
-            <select className='m-2 h-100 bg-success rounded' onChange={(e)=>setQty(e.target.value)}>
+            <select className='m-2 h-100 bg-success rounded' onChange={(e) => setQty(e.target.value)}>
               {Array.from(Array(3), (e, i) => <option key={i + 1} value={i + 1}>{i + 1}</option>)}
             </select>
-            <select className='m-2 h-100 bg-success rounded' ref={priceRef} onChange={(e)=>setSize(e.target.value)}>
+            <select className='m-2 h-100 bg-success rounded' ref={priceRef} onChange={(e) => setSize(e.target.value)}>
               {
                 priceOption.map(data => <option key={data} value={data}>{data}</option>)
               }
