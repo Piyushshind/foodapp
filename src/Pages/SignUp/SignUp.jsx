@@ -3,10 +3,11 @@ import { Link, json } from 'react-router-dom'
 
 const SignUp = () => {
 
-    const [credentials, setCredentials] = useState({ name: '', email: '', password: '', geolocation: '' });
+    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", geolocation: "" });
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/creatuser", {
+        const response = await fetch("http://localhost:5000/api/createuser", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -16,8 +17,8 @@ const SignUp = () => {
         const resx = await response.json();
         console.log(resx);
 
-        if(!json.success){
-               alert('enter valid credentials ')
+        if (!json.success) {
+            alert('enter valid credentials')
         }
     }
 
