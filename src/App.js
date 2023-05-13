@@ -6,17 +6,20 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import SignUp from './Pages/SignUp/SignUp';
 import Login from './Pages/Login/Login';
+import { CartProvider } from './Componants/ContextReducer/ContextReducer';
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp />} />
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }
