@@ -16,11 +16,11 @@ const mongoDB = async () => {
             global.foodCategory = catData
           }
         })
-        if (err) console.log(err)
-        else {
-          global.food_items = data;
-          console.log(global.food_items)
-        }
+        // if (err) console.log(err)
+        // else {
+        //   global.food_items = data;
+        //   console.log(global.food_items)
+        // }
       })
     }
 
