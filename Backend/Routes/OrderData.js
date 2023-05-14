@@ -3,7 +3,7 @@ const router = express.Router();
 const Order = require("../models/Orders")
 
 
-router.post('/OrderData', async (req, res) => {
+router.post('/orderData', async (req, res) => {
     let data = req.body.order_data
     await data.splice(0, 0, { Order_date: req.body.order_date })
 
@@ -31,3 +31,15 @@ router.post('/OrderData', async (req, res) => {
         }
     }
 })
+
+router.post('/myorderData', async (req, res) => {
+    try {
+        let myData = await Order.findOne({ 'email': req.body.email });
+        res.json({ orderData: myData })
+    } catch (error) {
+        res.send('Server Error', error.message);
+    }
+})
+
+
+module.exports = router;

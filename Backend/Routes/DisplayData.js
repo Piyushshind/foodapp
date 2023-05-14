@@ -9,4 +9,4 @@ router.post("/foodData",(req,res)=>{
         res.send("Server Error")
     }
 })
-module.exports = router
+module.exports = router;
