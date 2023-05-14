@@ -63,7 +63,7 @@ const Card = (props) => {
           <hr>
           </hr>
 
-          <button className='btn btn-success justify-center ms-2' onClick={handleAddtoCart}>Add to Cart</button>
+          <button className='btn btn-success justify-center ms-2 mb-1' onClick={handleAddtoCart}>Add to Cart</button>
 
         </div>
       </div>

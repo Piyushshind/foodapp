@@ -39,13 +39,13 @@ const Home = () => {
               </div>
             </div>
             <div className="carousel-item active">
-              <img src="https://source.unsplash.com/random/900×700/?cricket" className="d-block w-100" style={{ filter: 'brightness(80%)' }} alt="..." />
+              <img src="https://source.unsplash.com/random/900×700/?burger?" className="d-block w-100" style={{ filter: 'brightness(80%)' }} alt="..." />
             </div>
             <div className="carousel-item">
               <img src="https://source.unsplash.com/random/900×700/?pizza" className="d-block w-100" style={{ filter: 'brightness(60%)' }} alt="..." />
             </div>
             <div className="carousel-item">
-              <img src="https://source.unsplash.com/random/900×700/?chicken" className="d-block w-100" style={{ filter: 'brightness(85%)' }} alt="..." />
+              <img src="https://source.unsplash.com/random/900×700/?paneer" className="d-block w-100" style={{ filter: 'brightness(85%)' }} alt="..." />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -65,7 +65,7 @@ const Home = () => {
           foodCat !== [] ? foodCat.map((data) => {
             return (
 
-              <div className='row mb-3'>
+              <div key={data._id} className='row mb-3'>
                 <div key={data._id} className='fs-3 m-3'>
                   {data.CategoryName}
                 </div>

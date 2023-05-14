@@ -49,7 +49,7 @@ const MyOrder = () => {
                                     return (
                                         item.map((arrayData) => {
                                             return (
-                                                <div  >
+                                                <div key={arrayData.id} >
                                                     {arrayData.Order_date ? <div className='m-auto mt-5'>
                                                         {data = arrayData.Order_date}
                                                         <hr />
