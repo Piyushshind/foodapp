@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiDelete } from "react-icons/fi";
-import { useCart,useDispatchCart } from '../../Componants/ContextReducer/ContextReducer';  
+import { useCart, useDispatchCart } from '../../Componants/ContextReducer/ContextReducer';
 
 export default function Cart() {
   let data = useCart();
@@ -20,7 +20,7 @@ export default function Cart() {
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
     let response = await fetch("http://localhost:5000/api/orderData", {
-     
+
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export default function Cart() {
                 <td >{food.name}</td>
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
-                <td>{food.price}</td>  
+                <td>{food.price}</td>
                 <td ><button type="button" className="btn p-0"><FiDelete onClick={() => { dispatch({ type: "REMOVE", index: index }) }} /></button> </td></tr>
             ))}
           </tbody>
