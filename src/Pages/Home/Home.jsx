@@ -11,7 +11,7 @@ const Home = () => {
   const [search, setSearch] = useState('');
 
   const loadData = async () => {
-    const response = await fetch("http://localhost:5000/api/foodData", {
+    const response = await fetch("https://foodees-app.onrender.com/api/foodData", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
